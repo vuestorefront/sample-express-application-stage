@@ -31,7 +31,7 @@ jobs:
           NPM_USER: ${{ secrets.NPM_USER }}
           NPM_REGISTRY: "https://registrynpm.storefrontcloud.io"
 
-  deployment:
+  deploy:
     runs-on: ubuntu-latest
     needs: build
     steps:
