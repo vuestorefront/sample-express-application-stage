@@ -35,10 +35,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-    - name: Deploy
-      uses: fjogeleit/http-request-action@v1
-      with:
-        url: '${{ secrets.CONSOLE_API_URL }}/cloud/instances/${{ secrets.PROJECT_NAME }}-${{ secrets.CLOUD_REGION }}-gcp-storefrontcloud-io/deploy'
-        method: 'PATCH'
-        customHeaders: '{"Content-Type":"application/json"}'
-        data: '{ "cloudUserId": "${{ secrets.CLOUD_USERNAME }}", "cloudUserPassword": "${{ secrets.CLOUD_PASSWORD }}", "dockerImageHash": "${{ github.sha }}" }'
+      - name: Deploy
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: "${{ secrets.CONSOLE_API_URL }}/cloud/instances/${{ secrets.PROJECT_NAME }}-${{ secrets.CLOUD_REGION }}-gcp-storefrontcloud-io/deploy"
+          method: "PATCH"
+          customHeaders: '{"Content-Type":"application/json"}'
+          data: '{ "cloudUserId": "${{ secrets.CLOUD_USERNAME }}", "cloudUserPassword": "${{ secrets.CLOUD_PASSWORD }}", "dockerImageHash": "${{ github.sha }}" }'
+          timeout: 60000
